@@ -27,6 +27,7 @@
             <fileset dir="${app_resources_dir}"/>
             <globmapper from="*-tenant.xml" to="cspace-config-*.xml"/>
         </copy>
+  	<copy file="${app_trunk}/tomcat-main/src/main/resources/tenants/lhs/local-lhs-settings.xml" tofile="${config_destination}/tenants/lhs/local-lhs-settings.xml"/>
     </target>
     
     <target name="deploy_nightly_config"

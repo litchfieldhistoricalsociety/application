@@ -12,5 +12,6 @@ tomcat-main/src/main/resources/tenants/core/cow.xml
 .gitignore
 *.bak
 target/
-
+.DS_Store
+tomcat-main/src/main/resources/tenants/lhs/local-lhs-settings.xml
 
