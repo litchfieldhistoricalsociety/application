@@ -62,7 +62,8 @@ public class ServicesConnection {
 				new AuthScope(AuthScope.ANY_HOST,AuthScope.ANY_PORT,AuthScope.ANY_REALM),
 				new UsernamePasswordCredentials((String)creds.getCredential(ServicesStorageGenerator.CRED_USERID),
 												(String)creds.getCredential(ServicesStorageGenerator.CRED_PASSWORD)));
-		cache.setCached(getClass(),new String[]{"client"},client);
+		client.getParams().setAuthenticationPreemptive(true);
+                cache.setCached(getClass(),new String[]{"client"},client);
 		return client;
 	}
 	
@@ -233,6 +234,13 @@ public class ServicesConnection {
 		return out;
 	}
 
+	public ReturnedURL getPublishedReportDocumentURL(RequestMethod method_type,String uri,Document body,CSPRequestCredentials creds,CSPRequestCache cache) throws ConnectionException {
+		ReturnedURL out=new ReturnedURL();
+		doRequest(out,method_type,uri,makeDocumentSource(body),creds,cache);
+		out.relativize(base_url); // Annoying, but we don't want to have factories etc. or too many args
+		return out;
+	}
+	
 	public ReturnedMultipartDocument getMultipartXMLDocument(RequestMethod method_type,String uri,Map<String,Document> body,CSPRequestCredentials creds,CSPRequestCache cache) throws ConnectionException {
 		ReturnedMultipartDocument out=new ReturnedMultipartDocument();
 		doRequest(out,method_type,uri,makeMultipartSource(body),creds,cache);
