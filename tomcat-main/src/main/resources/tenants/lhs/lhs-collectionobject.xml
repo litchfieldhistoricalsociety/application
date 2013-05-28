@@ -1,0 +1,70 @@
+<record id="collection-object">
+    <services-record-path id="lhs">collectionobjects_lhs:http://collectionspace.org/services/collectionobject/local/lhs,collectionobjects_lhs</services-record-path>
+    <section id="identificationInformation">
+        <repeat id="otherNumberList/otherNumber">
+            <field id="numberType" in-tab="yes" seperate_ui_container="true">
+                <!-- updating options list -->
+                <selector>object-identification-other-number-type</selector>
+                <options>
+                    <option id="">Please select a value</option>
+                    <option id="ioprevious">Previous IO number</option>
+                    <option id="oldnumber">Old number</option>
+                    <option id="lender">Lender</option>
+                    <option id="obsolete">Obsolete</option>
+                    <option id="previous">Previous</option>
+                    <option id="serial">Serial</option>
+                    <option id="unknown">Unknown</option>
+                </options>
+            </field>
+        </repeat>
+        <field id="category" ui-search="repeatable" section="lhs">
+            <options>
+                <option id="">Please select a value</option>
+                <option id="term1">Term 1</option>
+                <option id="term2">Term 2</option>
+                <option id="term3">Term 3</option>
+                <option id="term4">Term 4</option>
+            </options>
+        </field>
+        <field id="loanAllowed" ui-search="repeatable" datatype="boolean" section="lhs"/>
+        <field id="legalOwner" ui-search="repeatable" autocomplete="person-person,organization-organization" section="lhs"/>
+        <field id="provenance" ui-search="repeatable" section="lhs"/>
+        <field id="homeLocation" ui-search="repeatable" section="lhs"/>
+    </section>
+    <section id="descriptionInformation">
+        <repeat id="materialGroupList/materialGroup">
+            <field id="material" ui-search="repeatable" autocomplete="concept-material_ca">
+                <selector>object-description-material</selector>
+            </field>
+        </repeat>
+        <field id="culture" ui-search="repeatable" section="lhs">
+            <options>
+                <option id="">Please select a value</option>
+                <option id="term1">Term 1</option>
+                <option id="term2">Term 2</option>
+                <option id="term3">Term 3</option>
+                <option id="term4">Term 4</option>
+            </options>
+        </field>
+        <field id="signed" ui-search="repeatable" datatype="boolean" section="lhs"/>
+        <field id="wholePart" ui-search="repeatable" section="lhs">
+            <options>
+                <option id="">Please select a value</option>
+                <option id="term1">Term 1</option>
+                <option id="term2">Term 2</option>
+                <option id="term3">Term 3</option>
+                <option id="term4">Term 4</option>
+            </options>
+        </field>
+        <field id="legalStatus" ui-search="repeatable" section="lhs">
+            <options>
+                <option id="">Please select a value</option>
+                <option id="term1">Term 1</option>
+                <option id="term2">Term 2</option>
+                <option id="term3">Term 3</option>
+                <option id="term4">Term 4</option>
+            </options>
+        </field>
+        <field id="legalStatusDate" ui-search="repeatable" ui-type="date" section="lhs"/>
+    </section>
+</record>

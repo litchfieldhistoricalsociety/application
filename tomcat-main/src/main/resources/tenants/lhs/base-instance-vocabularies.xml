@@ -1,0 +1,370 @@
+<instances>
+					<include src="domain-instance-vocabularies.xml" strip-root="yes"/>
+                    <instance id="vocab-xxx">
+                        <web-url>xxx</web-url>
+                        <title-ref>xxx</title-ref>
+                        <title>Temporary Vocab whilst none exist</title>
+                    </instance>
+                    <instance id="vocab-languages">
+                        <web-url>languages</web-url>
+                        <title-ref>languages</title-ref>
+                        <title>Languages</title>
+                        <options>
+                    		<option id="ara">Arabic</option>
+						<option id="hye">Armenian</option>
+							<option id="zho">Chinese</option>
+							<option id="eng">English</option>
+							<option id="fra">French</option>
+							<option id="deu">German</option>
+							<option id="grc">Ancient Greek</option>
+							<option id="heb">Hebrew</option>
+						<option id="ind">Indonesian</option>
+							<option id="ita">Italian</option>
+							<option id="jpn">Japanese</option>
+							<option id="kor">Korean</option>
+							<option id="lat">Latin</option>
+						<option id="mal">Malaysian</option>
+							<option id="enm">Middle English</option>
+							<option id="ang">Old English</option>
+							<option id="por">Portuguese</option>
+						<option id="ron">Romanian</option>
+							<option id="rus">Russian</option>
+							<option id="spa">Spanish</option>
+							<option id="swa">Swahili</option>
+						<option id="swe">Swedish</option>
+						<option id="tgl">Tagalog</option>
+						<option id="yor">Yoruba</option>
+                        </options>
+                    </instance>
+                    <instance id="vocab-lostatus">
+                        <web-url>loanoutstatus</web-url>
+                        <title-ref>loanoutstatus</title-ref>
+                        <title>loanedObjectStatus</title>
+                        <options>
+                            <option>Requested</option>
+                            <option>Authorized</option>
+                            <option>Agreed</option>
+                            <option>Conservation</option>
+                            <option>Sent</option>
+                            <option>Photography requested</option>
+                            <option>Refused</option>
+                            <option>Renewed</option>
+                            <option>Returned</option>
+                        </options>
+                    </instance>
+                    <instance id="vocab-currency">
+                        <web-url>currency</web-url>
+                        <title-ref>currency</title-ref>
+                        <title>Standard Currency</title>
+                        <options>
+                            <option id="USD">US Dollar</option>
+                            <option id="CAD">Canadian Dollar</option>
+                            <option id="EUR">Euro</option>
+                            <option id="GBP">Pound Sterling</option>
+                            <option id="DKK">Danish Krone</option>
+                            <option id="SEK">Swedish Krona</option>
+                            <option id="CHF">Swiss Franc</option>
+                        </options>
+                    </instance>
+                    <instance id="vocab-collectionmethod">
+                        <web-url>collectionmethod</web-url>
+                        <title-ref>collectionmethod</title-ref>
+                        <title>Collection Method</title>
+                        <options>
+                            <option id="borehole">borehole</option>
+                            <option id="commissioned">commissioned</option>
+                            <option id="exchanged">exchanged</option>
+                            <option id="founddead">found dead</option>
+                            <option id="metaldetector">metal detector</option>
+                            <option id="netted">netted</option>
+                            <option id="photographed">photographed</option>
+                            <option id="purchased">purchased</option>
+                            <option id="salvaged">salvaged</option>
+                            <option id="shot">shot</option>
+                            <option id="trapped">trapped</option>
+                        </options>
+                    </instance>
+                    <instance id="vocab-conditionfitness">
+                        <web-url>conditionfitness</web-url>
+                        <title-ref>conditionfitness</title-ref>
+                        <title>Condition Fitness</title>
+                        <options>
+                            <option id="dangerous">Dangerous</option>
+                            <option id="suitable">Suitable</option>
+                            <option id="reasonable">Reasonable</option>
+                            <option id="unsuitable">Unsuitable</option>
+                        </options>
+                    </instance>
+                    <instance id="vocab-conditioncheckmethod">
+                        <web-url>conditioncheckmethod</web-url>
+                        <title-ref>conditioncheckmethod</title-ref>
+                        <title>Condition Check Method</title>
+                        <options>
+                            <option id="observed">Observed</option>
+                            <option id="xrayed">X-Rayed</option>
+                        </options>
+                    </instance>
+                    <instance id="vocab-entrymethod">
+                        <web-url>entrymethod</web-url>
+                        <title-ref>entrymethod</title-ref>
+                        <title>Entry Method</title>
+                        <options>
+                            <option id="inperson">In person</option>
+                            <option id="post">Post</option>
+                            <option id="foundondoorstep">Found on doorstep</option>
+                        </options>
+                    </instance>
+                    <instance id="vocab-conditioncheckreason">
+                        <web-url>conditioncheckreason</web-url>
+                        <title-ref>conditioncheckreason</title-ref>
+                        <title>Condition Check Reason</title>
+                        <options>
+                            <option id="consideration">Consideration</option>
+                            <option id="damagedintransit">Damaged in transit</option>
+                            <option id="enquiry">Enquiry</option>
+                            <option id="loanin">Loan in</option>
+                            <option id="conservation">Conservation</option>
+                        </options>
+                    </instance>
+                    <instance id="vocab-locationtype">
+                        <web-url>locationtype</web-url>
+                        <title-ref>locationtype</title-ref>
+                        <title>Location Type</title>
+                        <options>
+                            <option id="building">Building</option>
+                            <option id="room">Room</option>
+                            <option id="unit">Unit</option>
+                            <option id="shelf">Shelf</option>
+                            <option id="drawer">Drawer</option>
+                            <option id="tray">Tray</option>
+                        </options>
+                    </instance>
+                    <instance id="vocab-dateera">
+                        <web-url>dateera</web-url>
+                        <title-ref>dateera</title-ref>
+                        <title>Date Era</title>
+                        <options>
+                            <option id="ce">CE</option>
+                            <option id="bce">BCE</option>
+                        </options>
+                    </instance>
+                    <instance id="vocab-datequalifier">
+                        <web-url>datequalifier</web-url>
+                        <title-ref>datequalifier</title-ref>
+                        <title>Date Qualifier</title>
+                        <options>
+                            <option id="days">Day(s)</option>
+                            <option id="month">Month(s)</option>
+                            <option id="years">Year(s)</option>
+                        </options>
+                    </instance>
+                    <instance id="vocab-agequalifier">
+                        <web-url>agequalifier</web-url>
+                        <title-ref>agequalifier</title-ref>
+                        <title>Age Qualifier</title>
+                        <options>
+                            <option id="approximately">approximately</option>
+                            <option id="olderthan">older than</option>
+                            <option id="youngerthan">younger than</option>
+                        </options>
+                    </instance>
+                    <instance id="vocab-dateCertainty">
+                        <web-url>datecertainty</web-url>
+                        <title-ref>datecertainty</title-ref>
+                        <title>Date Certainty</title>
+                        <options>
+                            <option id="after">After</option>
+                            <option id="approximate">Approximate</option>
+                            <option id="before">Before</option>
+                            <option id="circa">Circa</option>
+                            <option id="probably">Probably</option> 
+                            <option id="possibly">Possibly</option>
+                        </options>
+                    </instance>
+                    <instance id="vocab-persontermtype">
+                        <web-url>persontermtype</web-url>
+                        <title-ref>persontermtype</title-ref>
+                        <title>personTermType</title>
+                        <options>
+                                <option id="artist">Artist</option>
+                                <option id="donor">Donor</option>
+                                <option id="employee">Employee</option>
+                        </options>
+                    </instance>     
+                    <instance id="vocab-materials">
+                        <web-url>materials</web-url>
+                        <title-ref>materials</title-ref>
+                        <title>materials</title>
+                        <options>
+                            <option id="">Please select a value</option>
+                            <option id="acrylic">acrylic</option>
+                            <option id="alabaster">alabaster</option>
+                            <option id="aluminum">aluminum</option>
+                            <option id="amethyst">amethyst</option>
+                            <option id="animalhair">animal hair</option>
+                            <option id="ashes">ashes</option>
+                            <option id="bakelite">bakelite</option>
+                            <option id="balsa">balsa</option>
+                            <option id="bark">bark</option>
+                            <option id="beads">beads</option>
+                            <option id="beaver">beaver</option>
+                            <option id="birch">birch</option>
+                            <option id="bisque">bisque</option>
+                            <option id="board">board</option>
+                            <option id="bone">bone</option>
+                            <option id="brass">brass</option>
+                            <option id="brick">brick</option>
+                            <option id="bronze">bronze</option>
+                            <option id="butternut">butternut</option>
+                            <option id="cane">cane</option>
+                            <option id="canvas">canvas</option>
+                            <option id="cardboard">cardboard</option>
+                            <option id="cardstock">cardstock</option>
+                            <option id="castiron">cast iron</option>
+                            <option id="catgut">catgut</option>
+                            <option id="cedar">cedar</option>
+                            <option id="cellophane">cellophane</option>
+                            <option id="celluloid">celluloid</option>
+                            <option id="ceramic">ceramic</option>
+                            <option id="charcoal">charcoal</option>
+                            <option id="cherry">cherry</option>
+                            <option id="clay">clay</option>
+                            <option id="coconut">coconut</option>
+                            <option id="collage">collage</option>
+                            <option id="copper">copper</option>
+                            <option id="coral">coral</option>
+                            <option id="cork">cork</option>
+                            <option id="cotton">cotton</option>
+                            <option id="crayon">crayon</option>
+                            <option id="crystal">crystal</option>
+                            <option id="delftware">delftware</option>
+                            <option id="diamond">diamond</option>
+                            <option id="earthenware">earthenware</option>
+                            <option id="ebony">ebony</option>
+                            <option id="emerald">emerald</option>
+                            <option id="enamel">enamel</option>
+                            <option id="faience">faience</option>
+                            <option id="feather">feather</option>
+                            <option id="flower">flower</option>
+                            <option id="foam">foam</option>
+                            <option id="foamcore">foam core</option>
+                            <option id="fur">fur</option>
+                            <option id="garnet">garnet</option>
+                            <option id="gemstone">gemstone</option>
+                            <option id="gesso">gesso</option>
+                            <option id="glass">glass</option>
+                            <option id="glaze">glaze</option>
+                            <option id="gold">gold</option>
+                            <option id="gouache">gouache</option>
+                            <option id="gourd">gourd</option>
+                            <option id="granite">granite</option>
+                            <option id="graphite">graphite</option>
+                            <option id="grass">grass</option>
+                            <option id="hair">hair</option>
+                            <option id="hemp">hemp</option>
+                            <option id="hickory">hickory</option>
+                            <option id="hide">hide</option>
+                            <option id="horn">horn</option>
+                            <option id="humanhair">human hair</option>
+                            <option id="ink">ink</option>
+                            <option id="insect">insect</option>
+                            <option id="iron">iron</option>
+                            <option id="ivory">ivory</option>
+                            <option id="jet">jet</option>
+                            <option id="jute">jute</option>
+                            <option id="kidleather">kid leather</option>
+                            <option id="keratin">keratin</option>
+                            <option id="lacquer">lacquer</option>
+                            <option id="lead">lead</option>
+                            <option id="leather">leather</option>
+                            <option id="leaves">leaves</option>
+                            <option id="linen">linen</option>
+                            <option id="linoleum">linoleum</option>
+                            <option id="lusterware">lusterware</option>
+                            <option id="magnet">magnet</option>
+                            <option id="mahogany">mahogany</option>
+                            <option id="maple">maple</option>
+                            <option id="marble">marble</option>
+                            <option id="marcasite">marcasite</option>
+                            <option id="masonite">masonite</option>
+                            <option id="matboard">matboard</option>
+                            <option id="metal">metal</option>
+                            <option id="mica">mica</option>
+                            <option id="mosaic">mosaic</option>
+                            <option id="motherofpearl">mother of pearl</option>
+                            <option id="naturalfiber">natural fiber</option>
+                            <option id="nickel">nickel</option>
+                            <option id="nylon">nylon</option>
+                            <option id="oak">oak</option>
+                            <option id="oil">oil</option>
+                            <option id="onyx">onyx</option>
+                            <option id="opal">opal</option>
+                            <option id="paint">paint</option>
+                            <option id="paper">paper</option>
+                            <option id="papier_mache">papier mache</option>
+                            <option id="paste">paste</option>
+                            <option id="pasteboard">pasteboard</option>
+                            <option id="pastel">pastel</option>
+                            <option id="patentleather">patent leather</option>
+                            <option id="pearl">pearl</option>
+                            <option id="pencil">pencil</option>
+                            <option id="pewter">pewter</option>
+                            <option id="photograph">photograph</option>
+                            <option id="pigment">pigment</option>
+                            <option id="pine">pine</option>
+                            <option id="pipecleaner">pipe cleaner</option>
+                            <option id="plaster">plaster</option>
+                            <option id="plastic">plastic</option>
+                            <option id="polyester">polyester</option>
+                            <option id="poplar">poplar</option>
+                            <option id="porcelain">porcelain</option>
+                            <option id="porcupinequills">porcupine quills</option>
+                            <option id="pottery">pottery</option>
+                            <option id="pressboard">pressboard</option>
+                            <option id="quartz">quartz</option>
+                            <option id="quill">quill</option>
+                            <option id="raffia">raffia</option>
+                            <option id="rayon">rayon</option>
+                            <option id="redware">redware</option>
+                            <option id="rhinestone">rhinestone</option>
+                            <option id="rock">rock</option>
+                            <option id="rubber">rubber</option>
+                            <option id="ruby">ruby</option>
+                            <option id="rush">rush</option>
+                            <option id="sand">sand</option>
+                            <option id="seeds">seeds</option>
+                            <option id="sequins">sequins</option>
+                            <option id="shell">shell</option>
+                            <option id="silk">silk</option>
+                            <option id="silver">silver</option>
+                            <option id="slate">slate</option>
+                            <option id="soapstone">soapstone</option>
+                            <option id="sponge">sponge</option>
+                            <option id="stainlesssteel">stainless steel</option>
+                            <option id="steel">steel</option>
+                            <option id="stone">stone</option>
+                            <option id="stoneware">stoneware</option>
+                            <option id="straw">straw</option>
+                            <option id="suede">suede</option>
+                            <option id="syntheticfiber">synthetic fiber</option>
+                            <option id="syntheticleather">synthetic leather</option>
+                            <option id="teak">teak</option>
+                            <option id="tempera">tempera</option>
+                            <option id="tin">tin</option>
+                            <option id="topaz">topaz</option>
+                            <option id="tortoiseshell">tortoiseshell</option>
+                            <option id="tulip">tulip</option>
+                            <option id="turquoise">turquoise</option>
+                            <option id="twine">twine</option>
+                            <option id="velcro">velcro</option>
+                            <option id="vinyl">vinyl</option>
+                            <option id="walnut">walnut</option>
+                            <option id="watercolor">watercolor</option>
+                            <option id="wax">wax</option>
+                            <option id="wire">wire</option>
+                            <option id="wood">wood</option>
+                            <option id="wool">wool</option>
+                        </options>
+                    </instance>                   
+
+</instances>
