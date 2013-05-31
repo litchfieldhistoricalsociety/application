@@ -33,29 +33,32 @@
     </section>
     <section id="descriptionInformation">
         <repeat id="materialGroupList/materialGroup">
+            <!-- adding concept-material_ca auth -->
             <field id="material" ui-search="repeatable" autocomplete="concept-material_ca">
                 <selector>object-description-material</selector>
             </field>
         </repeat>
-        <field id="culture" ui-search="repeatable" section="lhs">
-            <options>
-                <option id="">Please select a value</option>
-                <option id="term1">Term 1</option>
-                <option id="term2">Term 2</option>
-                <option id="term3">Term 3</option>
-                <option id="term4">Term 4</option>
-            </options>
-        </field>
+        <repeat id="objectInscriptionGroupList/objectInscriptionGroup" section="lhs">
+            <field id="objectInscriptionType" ui-search="repeatable" section="lhs"/>
+            <field id="objectInscriptionText" ui-search="repeatable" section="lhs">
+                <!-- may be a term list -->
+            </field>
+            <field id="objectInscriptionLocation" ui-search="repeatable" section="lhs"/>
+            <field id="objectInscriptionNote" ui-search="repeatable" section="lhs"/>
+        </repeat>
+        <repeat id="cultures" section="lhs">
+            <field id="culture" ui-search="repeatable" section="lhs">
+                <!-- convert to dynamic list once available -->
+                <options>
+                    <option id="">Please select a value</option>
+                    <option id="term1">Term 1</option>
+                    <option id="term2">Term 2</option>
+                    <option id="term3">Term 3</option>
+                    <option id="term4">Term 4</option>
+                </options>
+            </field>
+        </repeat>
         <field id="signed" ui-search="repeatable" datatype="boolean" section="lhs"/>
-        <field id="wholePart" ui-search="repeatable" section="lhs">
-            <options>
-                <option id="">Please select a value</option>
-                <option id="term1">Term 1</option>
-                <option id="term2">Term 2</option>
-                <option id="term3">Term 3</option>
-                <option id="term4">Term 4</option>
-            </options>
-        </field>
         <field id="legalStatus" ui-search="repeatable" section="lhs">
             <options>
                 <option id="">Please select a value</option>
@@ -66,5 +69,21 @@
             </options>
         </field>
         <field id="legalStatusDate" ui-search="repeatable" ui-type="date" section="lhs"/>
+
+        <field id="catalogingDateMade" section="lhs"/>
+        <field id="catalogingDateEarliestYear" ui-type="validated" datatype="integer" section="lhs"/>
+        <field id="catalogingDateLatestYear" ui-type="validated" datatype="integer" section="lhs"/>
+        <repeat id="catalogingDateCenturies" section="lhs">
+            <field id="catalogingDateCentury" section="lhs">
+                <options>
+                    <option id="">Please select a value</option>
+                    <option id="c18th">18th</option>
+                    <option id="c19th">19th</option>
+                    <option id="c20th">20th</option>
+                    <option id="c21st">21st</option>
+                </options>
+            </field>
+        </repeat>
+        <field id="catalogingDateNote" section="lhs"/>
     </section>
 </record>
