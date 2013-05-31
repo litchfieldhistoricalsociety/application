@@ -13,7 +13,7 @@
 
 			<include src="base-collectionobject.xml,lhs-collectionobject.xml" merge="xmlmerge-lhs.properties"/>
 
-			<include src="base-procedure-acquisition.xml"/>
+			<include src="base-procedure-acquisition.xml,lhs-procedure-acquisition.xml" merge="xmlmerge-lhs.properties"/>
 			<include src="base-procedure-blobs.xml"/>
 			<include src="base-procedure-groups.xml"/>
 			<include src="base-procedure-intake.xml"/>

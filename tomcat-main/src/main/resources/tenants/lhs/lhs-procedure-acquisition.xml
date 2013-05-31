@@ -1,0 +1,23 @@
+<record id="acquisition">
+    <services-record-path id="lhs">acquisitions_lhs:http://collectionspace.org/services/acquisition/local/lhs,acquisitions_lhs</services-record-path>
+    <section id="acquisitionInformation">
+        <repeat id="acquisitionSources">
+            <!-- removing auth references and summary configuration; set as scalar field -->
+            <field id="acquisitionSource">
+                <selector>acquisition-acquisitionSource</selector>
+            </field>
+        </repeat>
+        <field id="acquisitionCostCurrency" autocomplete="vocab-currency" ui-type="enum" section="lhs">
+            <enum>
+                <default>urn:cspace:litchfieldhistoricalsociety.org:vocabularies:name(currency):item:name(USD)'US Dollar'</default>
+            </enum>
+        </field>
+        <field id="acquisitionCostValue" ui-type="validated" datatype="float" section="lhs"></field>
+        <field id="acquisitionPriceCurrency" autocomplete="vocab-currency" ui-type="enum" section="lhs">
+            <enum>
+                <default>urn:cspace:litchfieldhistoricalsociety.org:vocabularies:name(currency):item:name(USD)'US Dollar'</default>
+            </enum>
+        </field>
+        <field id="acquisitionPriceValue" ui-type="validated" datatype="float" section="lhs"></field>
+    </section>
+</record>
