@@ -1,0 +1,12 @@
+<record id="movement">
+    <section id="locationMovementInformation">
+        <!--  Object Location Information Group -->
+        <field id="currentLocation" ui-search="repeatable" in-title="yes" mini="summary,search,list,relate">
+            <!-- removing location auth refs -->
+            <title-selector>titleBar-currentLocation</title-selector>
+        </field>
+        <field id="normalLocation" ui-search="repeatable">
+            <!-- removing location auth refs -->
+        </field>
+    </section>
+</record>
