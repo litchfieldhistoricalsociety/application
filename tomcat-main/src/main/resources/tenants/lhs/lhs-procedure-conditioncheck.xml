@@ -1,0 +1,59 @@
+<record id="conditioncheck">
+    <services-record-path id="lhs">conditionchecks_lhs:http://collectionspace.org/services/conditioncheck/local/lhs,conditionchecks_lhs</services-record-path>
+    <section id="objectConditionInformation">
+        <repeat id="conditionCheckGroupList/conditionCheckGroup">
+            <field id="condition" ui-search="repeatable">
+                <!-- removing summary config -->
+                <selector>conditioncheck-condition</selector>
+                <options>
+                    <option id="" default="yes">Please select a value</option>
+                    <option id="needsnowork">Needs no work</option>
+                    <option id="exhibitableneedswork">Exhibitable / needs work</option>
+                    <option id="notexhibitablestable">Not exhibitable / stable</option>
+                    <option id="injeopardy">In jeopardy</option>
+                </options>
+            </field>
+        </repeat>
+        <field id="conditionLHS" ui-search="repeatable" in-title="yes" mini="summary,search,list,relate" section="lhs">
+            <!--options>
+                <option id="" default="yes">Please select a value</option>
+                <option id="needsnowork">Needs no work</option>
+                <option id="exhibitableneedswork">Exhibitable / needs work</option>
+                <option id="notexhibitablestable">Not exhibitable / stable</option>
+                <option id="injeopardy">In jeopardy</option>
+            </options-->
+        </field>
+        <field id="conditionDateLHS" ui-type="date" ui-search="repeatable" section="lhs"/>
+        <field id="conditionSummaryLHS" ui-search="repeatable" section="lhs"/>
+        <field id="conditionNoteLHS" ui-search="repeatable" section="lhs"/>
+        <field id="examinationFlag" ui-search="repeatable" datatype="boolean" section="lhs"/>
+        <field id="treatmentFlag" ui-search="repeatable" datatype="boolean" section="lhs"/>
+        <field id="damageFlag" ui-search="repeatable" datatype="boolean" section="lhs"/>
+        <field id="preparationFlag" ui-search="repeatable" datatype="boolean" section="lhs"/>
+        <field id="priorityTreatmentFlag" ui-search="repeatable" datatype="boolean" section="lhs"/>
+        <field id="priorityCuratorialFlag" ui-search="repeatable" datatype="boolean" section="lhs"/>
+    </section>
+    <section id="conditionCheckInformation">
+        <field id="activity" ui-search="repeatable" section="lhs"/>
+        <field id="activityStartDate" ui-type="date" ui-search="repeatable" section="lhs"/>
+        <field id="activityEndDate" ui-type="date" ui-search="repeatable" section="lhs"/>
+        <field id="activityReason" ui-search="repeatable" section="lhs"/>
+        <field id="activitySummary" ui-search="repeatable" section="lhs"/>
+        <field id="authorizedBy" ui-search="repeatable" autocomplete="person-person,organization-organization" section="lhs"/>
+        <field id="workBy" ui-search="repeatable" autocomplete="person-person,organization-organization" section="lhs"/>
+        <field id="estimatedTime" ui-type="validated" datatype="float" ui-search="repeatable" section="lhs"/>
+        <field id="estimatedCost" ui-type="validated" datatype="float" ui-search="repeatable" section="lhs"/>
+        <field id="estimatedCostCurrency" autocomplete="vocab-currency" ui-type="enum" ui-search="repeatable" section="lhs">
+            <enum>
+                <default>urn:cspace:litchfieldhistoricalsociety.org:vocabularies:name(currency):item:name(USD)'US Dollar'</default>
+            </enum>
+        </field>
+        <field id="activityTime" ui-type="validated" datatype="float" ui-search="repeatable" section="lhs"/>
+        <field id="activityCost" ui-type="validated" datatype="float" ui-search="repeatable" section="lhs"/>
+        <field id="activityCostCurrency" autocomplete="vocab-currency" ui-type="enum" ui-search="repeatable" section="lhs">
+            <enum>
+                <default>urn:cspace:litchfieldhistoricalsociety.org:vocabularies:name(currency):item:name(USD)'US Dollar'</default>
+            </enum>
+        </field>
+    </section>
+</record>

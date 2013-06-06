@@ -19,6 +19,7 @@
 			<include src="base-procedure-intake.xml"/>
 			<include src="base-procedure-loanin.xml"/>
 			<include src="base-procedure-loanout.xml"/>
+			<include src="base-procedure-conditioncheck.xml,lhs-procedure-conditioncheck.xml" merge="xmlmerge-lhs.properties"/>
 			<include src="base-procedure-media.xml"/>
 			<include src="base-procedure-movement.xml,lhs-procedure-movement.xml" merge="xmlmerge-lhs.properties"/>
 			<include src="base-procedure-objectexit.xml"/>
