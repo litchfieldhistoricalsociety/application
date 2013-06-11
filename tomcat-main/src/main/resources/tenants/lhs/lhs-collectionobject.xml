@@ -17,17 +17,32 @@
                 </options>
             </field>
         </repeat>
+        <field id="computedCurrentLocation">
+            <!-- removing  ui-type="valueDeURNed" -->
+        </field>
         <field id="category" ui-search="repeatable" section="lhs">
             <options>
                 <option id="">Please select a value</option>
-                <option id="term1">Term 1</option>
-                <option id="term2">Term 2</option>
-                <option id="term3">Term 3</option>
-                <option id="term4">Term 4</option>
+                <option id="Built Environment Artifacts">Built Environment Artifacts</option>
+                <option id="Communication Artifacts">Communication Artifacts</option>
+                <option id="Distribution and Transportation Artifacts">Distribution and Transportation Artifacts</option>
+                <option id="Furnishings">Furnishings</option>
+                <option id="Personal Artifacts">Personal Artifacts</option>
+                <option id="Recreational Artifacts">Recreational Artifacts</option>
+                <option id="Tools and Equipment for Communication">Tools and Equipment for Communication</option>
+                <option id="Tools and Equipment for Materials">Tools and Equipment for Materials</option>
+                <option id="Tools and Equipment for Science and Technology">Tools and Equipment for Science and Technology</option>
+                <option id="Unclassifiable Artifacts">Unclassifiable Artifacts</option>
             </options>
         </field>
         <field id="loanAllowed" ui-search="repeatable" datatype="boolean" section="lhs"/>
-        <field id="legalOwner" ui-search="repeatable" autocomplete="person-person,organization-organization" section="lhs"/>
+        <field id="legalOwner" ui-search="repeatable" section="lhs">
+            <options>
+                <option id="">Please select a value</option>
+                <option id="Litchfield Historical Society">Litchfield Historical Society</option>
+                <option id="Loan">Loan</option>
+            </options>
+        </field>
         <field id="provenance" ui-search="repeatable" section="lhs"/>
         <field id="homeLocation" ui-search="repeatable" section="lhs"/>
     </section>
@@ -39,10 +54,22 @@
             </field>
         </repeat>
         <repeat id="objectInscriptionGroupList/objectInscriptionGroup" section="lhs">
-            <field id="objectInscriptionType" ui-search="repeatable" section="lhs"/>
-            <field id="objectInscriptionText" ui-search="repeatable" section="lhs">
-                <!-- may be a term list -->
+            <field id="objectInscriptionType" ui-search="repeatable" section="lhs">
+                <options>
+                    <option id="">Please select a value</option>
+                    <option id="Embroidered">Embroidered</option>
+                    <option id="Engraved">Engraved</option>
+                    <option id="Handwritten">Handwritten</option>
+                    <option id="Impression">Impression</option>
+                    <option id="Inscription">Inscription</option>
+                    <option id="Label">Label</option>
+                    <option id="Mark">Mark</option>
+                    <option id="Monogram">Monogram</option>
+                    <option id="Printed">Printed</option>
+                    <option id="Signature">Signature</option>
+                </options>
             </field>
+            <field id="objectInscriptionText" ui-search="repeatable" section="lhs"/>
             <field id="objectInscriptionLocation" ui-search="repeatable" section="lhs"/>
             <field id="objectInscriptionNote" ui-search="repeatable" section="lhs"/>
         </repeat>
@@ -51,10 +78,41 @@
                 <!-- convert to dynamic list once available -->
                 <options>
                     <option id="">Please select a value</option>
-                    <option id="term1">Term 1</option>
-                    <option id="term2">Term 2</option>
-                    <option id="term3">Term 3</option>
-                    <option id="term4">Term 4</option>
+                    <option id="American">American</option>
+                    <option id="Arabic">Arabic</option>
+                    <option id="Asian">Asian</option>
+                    <option id="Austrian">Austrian</option>
+                    <option id="Belgian">Belgian</option>
+                    <option id="Bohemian">Bohemian</option>
+                    <option id="Bulgarian">Bulgarian</option>
+                    <option id="Canadian">Canadian</option>
+                    <option id="Chinese">Chinese</option>
+                    <option id="Dutch">Dutch</option>
+                    <option id="Egyptian">Egyptian</option>
+                    <option id="English">English</option>
+                    <option id="European">European</option>
+                    <option id="Filipino">Filipino</option>
+                    <option id="Finish">Finish</option>
+                    <option id="French">French</option>
+                    <option id="German">German</option>
+                    <option id="Greek">Greek</option>
+                    <option id="Indian">Indian</option>
+                    <option id="Irish">Irish</option>
+                    <option id="Italian">Italian</option>
+                    <option id="Japanese">Japanese</option>
+                    <option id="Mexican">Mexican</option>
+                    <option id="Native American">Native American</option>
+                    <option id="Portugese">Portugese</option>
+                    <option id="Roman">Roman</option>
+                    <option id="Russian">Russian</option>
+                    <option id="Scandenavian">Scandenavian</option>
+                    <option id="Scottish">Scottish</option>
+                    <option id="Spanish">Spanish</option>
+                    <option id="Swedish">Swedish</option>
+                    <option id="Swiss">Swiss</option>
+                    <option id="Taiwanese">Taiwanese</option>
+                    <option id="Tibetan">Tibetan</option>
+                    <option id="Turkish">Turkish</option>
                 </options>
             </field>
         </repeat>
@@ -62,10 +120,9 @@
         <field id="legalStatus" ui-search="repeatable" section="lhs">
             <options>
                 <option id="">Please select a value</option>
-                <option id="term1">Term 1</option>
-                <option id="term2">Term 2</option>
-                <option id="term3">Term 3</option>
-                <option id="term4">Term 4</option>
+                <option id="Deaccessioned">Deaccessioned</option>
+                <option id="Loan">Loan</option>
+                <option id="Permanent Collection">Permanent Collection</option>
             </options>
         </field>
         <field id="legalStatusDate" ui-search="repeatable" ui-type="date" section="lhs"/>
@@ -77,13 +134,21 @@
             <field id="catalogingDateCentury" section="lhs">
                 <options>
                     <option id="">Please select a value</option>
-                    <option id="c18th">18th</option>
-                    <option id="c19th">19th</option>
-                    <option id="c20th">20th</option>
-                    <option id="c21st">21st</option>
+                    <option id="18th">18th</option>
+                    <option id="19th">19th</option>
+                    <option id="20th">20th</option>
+                    <option id="21st">21st</option>
                 </options>
             </field>
         </repeat>
         <field id="catalogingDateNote" section="lhs"/>
+    </section>
+    <section id="objectProductionInformation">
+        <repeat id="objectProductionPlaceGroupList/objectProductionPlaceGroup">
+            <field id="objectProductionPlace" ui-search="repeatable" autocomplete="place-place">
+                <!-- adding place auth -->
+                <selector>object-production-place</selector>
+            </field>
+        </repeat>
     </section>
 </record>

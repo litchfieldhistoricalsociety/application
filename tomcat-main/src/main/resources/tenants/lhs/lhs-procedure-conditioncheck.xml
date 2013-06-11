@@ -15,13 +15,13 @@
             </field>
         </repeat>
         <field id="conditionLHS" ui-search="repeatable" in-title="yes" mini="summary,search,list,relate" section="lhs">
-            <!--options>
+            <options>
                 <option id="" default="yes">Please select a value</option>
-                <option id="needsnowork">Needs no work</option>
-                <option id="exhibitableneedswork">Exhibitable / needs work</option>
-                <option id="notexhibitablestable">Not exhibitable / stable</option>
-                <option id="injeopardy">In jeopardy</option>
-            </options-->
+                <option id="Excellent">Excellent</option>
+                <option id="Fair">Fair</option>
+                <option id="Good">Good</option>
+                <option id="Poor">Poor</option>
+            </options>
         </field>
         <field id="conditionDateLHS" ui-type="date" ui-search="repeatable" section="lhs"/>
         <field id="conditionSummaryLHS" ui-search="repeatable" section="lhs"/>
