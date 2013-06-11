@@ -37,8 +37,6 @@
         <field id="activityEndDate" ui-type="date" ui-search="repeatable" section="lhs"/>
         <field id="activityReason" ui-search="repeatable" section="lhs"/>
         <field id="activitySummary" ui-search="repeatable" section="lhs"/>
-        <field id="authorizedBy" ui-search="repeatable" autocomplete="person-person,organization-organization" section="lhs"/>
-        <field id="workBy" ui-search="repeatable" autocomplete="person-person,organization-organization" section="lhs"/>
         <field id="estimatedTime" ui-type="validated" datatype="float" ui-search="repeatable" section="lhs"/>
         <field id="estimatedCost" ui-type="validated" datatype="float" ui-search="repeatable" section="lhs"/>
         <field id="estimatedCostCurrency" autocomplete="vocab-currency" ui-type="enum" ui-search="repeatable" section="lhs">
