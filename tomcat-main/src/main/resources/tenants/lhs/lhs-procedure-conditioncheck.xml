@@ -30,8 +30,6 @@
         <field id="treatmentFlag" ui-search="repeatable" datatype="boolean" section="lhs"/>
         <field id="damageFlag" ui-search="repeatable" datatype="boolean" section="lhs"/>
         <field id="preparationFlag" ui-search="repeatable" datatype="boolean" section="lhs"/>
-        <field id="priorityTreatmentFlag" ui-search="repeatable" datatype="boolean" section="lhs"/>
-        <field id="priorityCuratorialFlag" ui-search="repeatable" datatype="boolean" section="lhs"/>
     </section>
     <section id="conditionCheckInformation">
         <field id="activity" ui-search="repeatable" section="lhs"/>
