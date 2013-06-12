@@ -2,8 +2,8 @@
     <services-record-path id="lhs">acquisitions_lhs:http://collectionspace.org/services/acquisition/local/lhs,acquisitions_lhs</services-record-path>
     <section id="acquisitionInformation">
         <repeat id="acquisitionSources">
-            <!-- removing auth references and summary configuration; set as scalar field -->
-            <field id="acquisitionSource">
+            <!-- removing auth references; set as scalar field -->
+            <field id="acquisitionSource" mini="summary,search,list,relate" in-title="yes">
                 <selector>acquisition-acquisitionSource</selector>
             </field>
         </repeat>
