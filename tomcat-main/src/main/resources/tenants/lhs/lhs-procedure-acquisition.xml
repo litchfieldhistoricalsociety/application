@@ -12,12 +12,23 @@
                 <default>urn:cspace:litchfieldhistoricalsociety.org:vocabularies:name(currency):item:name(USD)'US Dollar'</default>
             </enum>
         </field>
-        <field id="acquisitionCostValue" ui-type="validated" datatype="float" section="lhs"></field>
-        <field id="acquisitionPriceCurrency" autocomplete="vocab-currency" ui-type="enum" section="lhs">
+        <field id="acquisitionCostValue" ui-type="validated" datatype="float" section="lhs"/>
+        <field id="acquisitionAppraisalCurrency" autocomplete="vocab-currency" ui-type="enum" section="lhs">
             <enum>
                 <default>urn:cspace:litchfieldhistoricalsociety.org:vocabularies:name(currency):item:name(USD)'US Dollar'</default>
             </enum>
         </field>
-        <field id="acquisitionPriceValue" ui-type="validated" datatype="float" section="lhs"></field>
+        <field id="acquisitionAppraisalValue" ui-type="validated" datatype="float" section="lhs"/>
+        <field id="acquisitionAppraisalDate" ui-type="date" section="lhs"/>
+        <field id="acquisitionAppraiser" autocomplete="person-person,organization-organization" section="lhs"/>
+    </section>
+    <section id="objectDonorContributionInformation" section="lhs">
+        <field id="donor" autocomplete="person-person,organization-organization" section="lhs"/>
+        <field id="donorsPersonalExperience" section="lhs"/>
+        <field id="donorsPersonalResponse" section="lhs"/>
+        <repeat id="donorsReferences" section="lhs">
+            <field id="donorsReference" datatype="largetext" section="lhs"/>
+        </repeat>
+        <field id="donorsContributionNote" section="lhs"/>
     </section>
 </record>
