@@ -36,13 +36,7 @@
             </options>
         </field>
         <field id="loanAllowed" ui-search="repeatable" datatype="boolean" section="lhs"/>
-        <field id="legalOwner" ui-search="repeatable" section="lhs">
-            <options>
-                <option id="">Please select a value</option>
-                <option id="Litchfield Historical Society">Litchfield Historical Society</option>
-                <option id="Loan">Loan</option>
-            </options>
-        </field>
+        <field id="legalOwner" ui-search="repeatable" autocomplete="vocab-owner" ui-type="enum" section="lhs"/>
         <field id="provenance" ui-search="repeatable" section="lhs"/>
         <field id="homeLocation" ui-search="repeatable" section="lhs"/>
     </section>
@@ -54,67 +48,13 @@
             </field>
         </repeat>
         <repeat id="objectInscriptionGroupList/objectInscriptionGroup" section="lhs">
-            <field id="objectInscriptionType" ui-search="repeatable" section="lhs">
-                <options>
-                    <option id="">Please select a value</option>
-                    <option id="Embroidered">Embroidered</option>
-                    <option id="Engraved">Engraved</option>
-                    <option id="Handwritten">Handwritten</option>
-                    <option id="Impression">Impression</option>
-                    <option id="Inscription">Inscription</option>
-                    <option id="Label">Label</option>
-                    <option id="Mark">Mark</option>
-                    <option id="Monogram">Monogram</option>
-                    <option id="Printed">Printed</option>
-                    <option id="Signature">Signature</option>
-                </options>
-            </field>
+            <field id="objectInscriptionType" ui-search="repeatable" autocomplete="vocab-inscriptiontype" ui-type="enum" section="lhs"/>
             <field id="objectInscriptionText" ui-search="repeatable" section="lhs"/>
             <field id="objectInscriptionLocation" ui-search="repeatable" section="lhs"/>
             <field id="objectInscriptionNote" ui-search="repeatable" section="lhs"/>
         </repeat>
         <repeat id="cultures" section="lhs">
-            <field id="culture" ui-search="repeatable" section="lhs">
-                <!-- convert to dynamic list once available -->
-                <options>
-                    <option id="">Please select a value</option>
-                    <option id="American">American</option>
-                    <option id="Arabic">Arabic</option>
-                    <option id="Asian">Asian</option>
-                    <option id="Austrian">Austrian</option>
-                    <option id="Belgian">Belgian</option>
-                    <option id="Bohemian">Bohemian</option>
-                    <option id="Bulgarian">Bulgarian</option>
-                    <option id="Canadian">Canadian</option>
-                    <option id="Chinese">Chinese</option>
-                    <option id="Dutch">Dutch</option>
-                    <option id="Egyptian">Egyptian</option>
-                    <option id="English">English</option>
-                    <option id="European">European</option>
-                    <option id="Filipino">Filipino</option>
-                    <option id="Finish">Finish</option>
-                    <option id="French">French</option>
-                    <option id="German">German</option>
-                    <option id="Greek">Greek</option>
-                    <option id="Indian">Indian</option>
-                    <option id="Irish">Irish</option>
-                    <option id="Italian">Italian</option>
-                    <option id="Japanese">Japanese</option>
-                    <option id="Mexican">Mexican</option>
-                    <option id="Native American">Native American</option>
-                    <option id="Portugese">Portugese</option>
-                    <option id="Roman">Roman</option>
-                    <option id="Russian">Russian</option>
-                    <option id="Scandenavian">Scandenavian</option>
-                    <option id="Scottish">Scottish</option>
-                    <option id="Spanish">Spanish</option>
-                    <option id="Swedish">Swedish</option>
-                    <option id="Swiss">Swiss</option>
-                    <option id="Taiwanese">Taiwanese</option>
-                    <option id="Tibetan">Tibetan</option>
-                    <option id="Turkish">Turkish</option>
-                </options>
-            </field>
+            <field id="culture" ui-search="repeatable" autocomplete="vocab-culture" ui-type="enum" section="lhs"/>
         </repeat>
         <field id="signed" ui-search="repeatable" datatype="boolean" section="lhs"/>
         <field id="legalStatus" ui-search="repeatable" section="lhs">
