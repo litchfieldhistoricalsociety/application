@@ -1,5 +1,11 @@
 <record id="collection-object">
     <services-record-path id="lhs">collectionobjects_lhs:http://collectionspace.org/services/collectionobject/local/lhs,collectionobjects_lhs</services-record-path>
+    <section id="coreInformation">
+        <field id="nametitle" exists-in-services="false">
+            <!-- removing summary config -->
+            <selector>object-identification-object-nametitle</selector>
+        </field>
+    </section>
     <section id="identificationInformation">
         <repeat id="otherNumberList/otherNumber">
             <field id="numberType" in-tab="yes" seperate_ui_container="true">
@@ -20,6 +26,12 @@
         <field id="computedCurrentLocation">
             <!-- removing  ui-type="valueDeURNed" -->
         </field>
+        <repeat id="objectNameList/objectNameGroup">
+            <field id="objectName" mini="summary,search,list,relate" ui-search="repeatable">
+                <!-- adding summary config -->
+                <selector>object-identification-object-name</selector>
+            </field>
+        </repeat>
         <field id="category" ui-search="repeatable" section="lhs">
             <options>
                 <option id="">Please select a value</option>
