@@ -1,12 +1,27 @@
 <record id="acquisition">
     <services-record-path id="lhs">acquisitions_lhs:http://collectionspace.org/services/acquisition/local/lhs,acquisitions_lhs</services-record-path>
     <section id="acquisitionInformation">
+        <field id="acquisitionMethod" ui-search="repeatable" seperate_ui_container="true">
+            <selector>acquisition-acquisition-method</selector>
+            <!-- removing default value and adding default blank choice -->
+            <options>
+                <option id="">Please select a value</option>
+                <option id="gift">Gift</option>
+                <option id="purchase">Purchase</option>
+                <option id="exchange">Exchange</option>
+                <option id="transfer">Transfer</option>
+                <option id="treasure">Treasure</option>
+            </options>
+        </field>
         <repeat id="acquisitionSources">
             <!-- removing auth references; set as scalar field -->
-            <field id="acquisitionSource" mini="summary,search,list,relate" in-title="yes">
+            <field id="acquisitionSource">
                 <selector>acquisition-acquisitionSource</selector>
             </field>
         </repeat>
+        <field id="creditLine" mini="summary,search,list,relate" in-title="yes" ui-search="repeatable">
+            <!-- setting as summary field -->
+        </field>
         <field id="acquisitionCostCurrency" autocomplete="vocab-currency" ui-type="enum" section="lhs">
             <enum>
                 <default>urn:cspace:litchfieldhistoricalsociety.org:vocabularies:name(currency):item:name(USD)'US Dollar'</default>
