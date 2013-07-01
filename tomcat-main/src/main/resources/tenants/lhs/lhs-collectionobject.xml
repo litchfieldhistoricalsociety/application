@@ -99,11 +99,11 @@
         </field>
         <field id="legalStatusDate" ui-search="repeatable" ui-type="date" section="lhs"/>
 
-        <field id="catalogingDateMade" section="lhs"/>
-        <field id="catalogingDateEarliestYear" ui-type="validated" datatype="integer" section="lhs"/>
-        <field id="catalogingDateLatestYear" ui-type="validated" datatype="integer" section="lhs"/>
+        <field id="catalogingDateMade" ui-search="repeatable" section="lhs"/>
+        <field id="catalogingDateEarliestYear" ui-search="repeatable" ui-type="date" section="lhs"/>
+        <field id="catalogingDateLatestYear" ui-search="repeatable" ui-type="date" section="lhs"/>
         <repeat id="catalogingDateCenturies" section="lhs">
-            <field id="catalogingDateCentury" section="lhs">
+            <field id="catalogingDateCentury" ui-search="repeatable" section="lhs">
                 <options>
                     <option id="">Please select a value</option>
                     <option id="18th">18th</option>
