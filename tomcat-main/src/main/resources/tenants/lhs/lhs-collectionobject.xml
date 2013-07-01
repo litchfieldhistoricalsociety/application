@@ -100,8 +100,8 @@
         <field id="legalStatusDate" ui-search="repeatable" ui-type="date" section="lhs"/>
 
         <field id="catalogingDateMade" ui-search="repeatable" section="lhs"/>
-        <field id="catalogingDateEarliestYear" ui-search="repeatable" ui-type="date" section="lhs"/>
-        <field id="catalogingDateLatestYear" ui-search="repeatable" ui-type="date" section="lhs"/>
+        <field id="catalogingDateEarliestYear" ui-search="range" ui-type="date" section="lhs"/>
+        <field id="catalogingDateLatestYear" ui-search="range" ui-type="date" section="lhs"/>
         <repeat id="catalogingDateCenturies" section="lhs">
             <field id="catalogingDateCentury" ui-search="repeatable" section="lhs">
                 <options>
