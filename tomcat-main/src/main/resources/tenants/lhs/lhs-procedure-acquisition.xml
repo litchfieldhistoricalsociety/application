@@ -15,7 +15,7 @@
         </field>
         <repeat id="acquisitionSources">
             <!-- removing auth references; set as scalar field -->
-            <field id="acquisitionSource">
+            <field id="acquisitionSource" ui-search="repeatable">
                 <selector>acquisition-acquisitionSource</selector>
             </field>
         </repeat>
