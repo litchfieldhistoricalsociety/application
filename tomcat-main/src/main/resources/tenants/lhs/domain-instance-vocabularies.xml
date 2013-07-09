@@ -65,6 +65,7 @@
             <option id="Monogram">Monogram</option>
             <option id="Printed">Printed</option>
             <option id="Signature">Signature</option>
+            <option id="Stamp">Stamp</option>
         </options>
     </instance>
     <instance id="vocab-condition">
