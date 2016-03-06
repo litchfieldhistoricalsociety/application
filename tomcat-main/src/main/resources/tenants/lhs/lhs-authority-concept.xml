@@ -1,0 +1,6 @@
+<record id="concept" is-extension="true">
+    <services-record-path id="lhs">concepts_lhs:http://collectionspace.org/services/concept/local/lhs,concepts_lhs</services-record-path>
+    <section id="conceptAuthorityInformation">
+        <field id="conceptNote" section="lhs"/>
+    </section>
+</record>

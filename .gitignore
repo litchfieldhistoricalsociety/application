@@ -18,4 +18,5 @@ target/
 *.bindings.xml
 logs/
 war-entry/tmp/
+tomcat-main/src/main/resources/tenants/lhs/host-settings.xml
 

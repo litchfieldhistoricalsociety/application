@@ -1,0 +1,10 @@
+<record id="movement">
+    <section id="locationMovementInformation">
+        <field id="currentLocation" ui-search="repeatable" in-title="yes" mini="summary,search,list,relate" autocomplete="">
+            <!-- removing location auth refs -->
+        </field>
+        <field id="normalLocation" ui-search="repeatable" autocomplete="">
+            <!-- removing location auth refs -->
+        </field>
+    </section>
+</record>

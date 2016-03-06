@@ -1,0 +1,132 @@
+<record id="collection-object" is-extension="true">
+    <services-record-path id="lhs">collectionobjects_lhs:http://collectionspace.org/services/collectionobject/local/lhs,collectionobjects_lhs</services-record-path>
+    <section id="coreInformation">
+        <field id="nametitle" mini="search,list,relate" exists-in-services="false">
+            <!-- removing summary config -->
+        </field>
+    </section>
+    <section id="identificationInformation">
+        <repeat id="otherNumberList/otherNumber">
+            <field id="numberType" in-tab="yes" seperate_ui_container="true">
+                <!-- updating options list -->
+                <options>
+                    <option id="">Please select a value</option>
+                    <option id="ioprevious">Previous IO number</option>
+                    <option id="oldnumber">Old number</option>
+                    <option id="lender">Lender</option>
+                    <option id="obsolete">Obsolete</option>
+                    <option id="previous">Previous</option>
+                    <option id="serial">Serial</option>
+                    <option id="unknown">Unknown</option>
+                </options>
+            </field>
+        </repeat>
+        <field id="computedCurrentLocation" ui-type="">
+            <!-- removing ui-type="valueDeURNed" -->
+        </field>
+        <repeat id="objectNameList/objectNameGroup">
+            <field id="objectName" mini="summary,search,list,relate" ui-search="repeatable">
+                <!-- adding mini attribute -->
+            </field>
+        </repeat>
+        <field id="category" ui-search="repeatable" section="lhs">
+            <options>
+                <option id="">Please select a value</option>
+                <option id="Built Environment Artifacts">Built Environment Artifacts</option>
+                <option id="Communication Artifacts">Communication Artifacts</option>
+                <option id="Distribution and Transportation Artifacts">Distribution and Transportation Artifacts</option>
+                <option id="Furnishings">Furnishings</option>
+                <option id="Personal Artifacts">Personal Artifacts</option>
+                <option id="Recreational Artifacts">Recreational Artifacts</option>
+                <option id="Tools and Equipment for Communication">Tools and Equipment for Communication</option>
+                <option id="Tools and Equipment for Materials">Tools and Equipment for Materials</option>
+                <option id="Tools and Equipment for Science and Technology">Tools and Equipment for Science and Technology</option>
+                <option id="Unclassifiable Artifacts">Unclassifiable Artifacts</option>
+            </options>
+        </field>
+        <field id="loanAllowed" ui-search="repeatable" datatype="boolean" section="lhs"/>
+        <field id="legalOwner" ui-search="repeatable" autocomplete="vocab-owner" ui-type="enum" section="lhs"/>
+        <field id="provenance" ui-search="repeatable" section="lhs"/>
+        <field id="homeLocation" ui-search="repeatable" section="lhs"/>
+    </section>
+    <section id="descriptionInformation">
+        <repeat id="materialGroupList/materialGroup">
+            <field id="material" ui-search="repeatable" autocomplete="concept-material_ca">
+                <!-- adding concept-material_ca auth -->
+            </field>
+        </repeat>
+        <section id="textualInscriptionInformation">
+            <repeat id="textualInscriptionGroupList/textualInscriptionGroup">
+                <field id="inscriptionContentType" seperate_ui_container="true">
+                    <!-- adding additional terms -->
+                    <options>
+                        <option id="">Please select a value</option>
+                        <option id="brand">brand</option>
+                        <option id="decoration">decoration</option>
+                        <option id="estate-stamp">estate stamp</option>
+                        <option id="family history">family history</option>
+                        <option id="graffiti">graffiti</option>
+                        <option id="label">label</option>
+                        <option id="maker's-mark">maker's mark</option>
+                        <option id="object history">object history</option>
+                        <option id="other">other</option>
+                    </options>
+                </field>
+            </repeat>
+        </section>
+        <repeat id="objectInscriptionGroupList/objectInscriptionGroup" section="lhs">
+            <field id="objectInscriptionType" ui-search="repeatable" autocomplete="vocab-inscriptiontype" ui-type="enum" section="lhs"/>
+            <field id="objectInscriptionText" ui-search="repeatable" section="lhs"/>
+            <field id="objectInscriptionLocation" ui-search="repeatable" section="lhs"/>
+            <field id="objectInscriptionNote" ui-search="repeatable" section="lhs"/>
+        </repeat>
+        <repeat id="cultures" section="lhs">
+            <field id="culture" ui-search="repeatable" autocomplete="vocab-culture" ui-type="enum" section="lhs"/>
+        </repeat>
+        <field id="signed" ui-search="repeatable" datatype="boolean" section="lhs"/>
+        <field id="legalStatus" ui-search="repeatable" section="lhs">
+            <options>
+                <option id="">Please select a value</option>
+                <option id="Deaccessioned">Deaccessioned</option>
+                <option id="Loan">Loan</option>
+                <option id="Permanent Collection">Permanent Collection</option>
+            </options>
+        </field>
+        <field id="legalStatusDate" ui-search="repeatable" ui-type="date" section="lhs"/>
+
+        <field id="catalogingDateMade" ui-search="repeatable" section="lhs"/>
+        <field id="catalogingDateEarliestYear" ui-search="range" ui-type="date" section="lhs"/>
+        <field id="catalogingDateLatestYear" ui-search="range" ui-type="date" section="lhs"/>
+        <repeat id="catalogingDateCenturies" section="lhs">
+            <field id="catalogingDateCentury" ui-search="repeatable" section="lhs">
+                <options>
+                    <option id="">Please select a value</option>
+                    <option id="18th">18th</option>
+                    <option id="19th">19th</option>
+                    <option id="20th">20th</option>
+                    <option id="21st">21st</option>
+                </options>
+            </field>
+        </repeat>
+        <field id="catalogingDateNote" section="lhs"/>
+    </section>
+    <section id="objectProductionInformation">
+        <repeat id="objectProductionPlaceGroupList/objectProductionPlaceGroup">
+            <field id="objectProductionPlace" ui-search="repeatable" autocomplete="place-place">
+                <!-- adding place auth -->
+            </field>
+        </repeat>
+        <repeat id="objectProductionPersonGroupList/objectProductionPersonGroup">
+            <field id="objectProductionPerson" ui-search="repeatable" autocomplete="person-person,organization-organization">
+                <!-- adding org auth ref -->
+            </field>
+        </repeat>
+    </section>
+    <section id="objectHistoryAssociationInformation">
+        <repeat id="formerOwnerGroupList/formerOwnerGroup" section="lhs">
+            <field id="formerOwner" ui-search="repeatable" autocomplete="person-person,organization-organization" section="lhs"/>
+            <field id="formerOwnerDate" ui-search="repeatable" ui-type="date" section="lhs"/>
+            <field id="formerOwnerPlace" ui-search="repeatable" section="lhs"/>
+        </repeat>
+    </section>
+</record>
