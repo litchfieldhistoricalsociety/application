@@ -1,4 +1,4 @@
-<record id="collection-object" is-extension="true">
+<record id="collection-object" is-extension="true" generate-services-schema="true">
     <services-record-path id="lhs">collectionobjects_lhs:http://collectionspace.org/services/collectionobject/local/lhs,collectionobjects_lhs</services-record-path>
     <section id="coreInformation">
         <field id="nametitle" mini="search,list,relate" exists-in-services="false">
@@ -44,10 +44,10 @@
                 <option id="Unclassifiable Artifacts">Unclassifiable Artifacts</option>
             </options>
         </field>
-        <field id="loanAllowed" ui-search="repeatable" datatype="boolean" section="lhs"/>
-        <field id="legalOwner" ui-search="repeatable" autocomplete="vocab-owner" ui-type="enum" section="lhs"/>
-        <field id="provenance" ui-search="repeatable" section="lhs"/>
-        <field id="homeLocation" ui-search="repeatable" section="lhs"/>
+        <field id="loanAllowed" ui-search="repeatable" datatype="boolean" section="lhs"></field>
+        <field id="legalOwner" ui-search="repeatable" autocomplete="vocab-owner" ui-type="enum" section="lhs"></field>
+        <field id="provenance" ui-search="repeatable" section="lhs"></field>
+        <field id="homeLocation" ui-search="repeatable" section="lhs"></field>
     </section>
     <section id="descriptionInformation">
         <repeat id="materialGroupList/materialGroup">
@@ -75,15 +75,15 @@
             </repeat>
         </section>
         <repeat id="objectInscriptionGroupList/objectInscriptionGroup" section="lhs">
-            <field id="objectInscriptionType" ui-search="repeatable" autocomplete="vocab-inscriptiontype" ui-type="enum" section="lhs"/>
-            <field id="objectInscriptionText" ui-search="repeatable" section="lhs"/>
-            <field id="objectInscriptionLocation" ui-search="repeatable" section="lhs"/>
-            <field id="objectInscriptionNote" ui-search="repeatable" section="lhs"/>
+            <field id="objectInscriptionType" ui-search="repeatable" autocomplete="vocab-inscriptiontype" ui-type="enum" section="lhs"></field>
+            <field id="objectInscriptionText" ui-search="repeatable" section="lhs"></field>
+            <field id="objectInscriptionLocation" ui-search="repeatable" section="lhs"></field>
+            <field id="objectInscriptionNote" ui-search="repeatable" section="lhs"></field>
         </repeat>
         <repeat id="cultures" section="lhs">
-            <field id="culture" ui-search="repeatable" autocomplete="vocab-culture" ui-type="enum" section="lhs"/>
+            <field id="culture" ui-search="repeatable" autocomplete="vocab-culture" ui-type="enum" section="lhs"></field>
         </repeat>
-        <field id="signed" ui-search="repeatable" datatype="boolean" section="lhs"/>
+        <field id="signed" ui-search="repeatable" datatype="boolean" section="lhs"></field>
         <field id="legalStatus" ui-search="repeatable" section="lhs">
             <options>
                 <option id="">Please select a value</option>
@@ -92,11 +92,11 @@
                 <option id="Permanent Collection">Permanent Collection</option>
             </options>
         </field>
-        <field id="legalStatusDate" ui-search="repeatable" ui-type="date" section="lhs"/>
+        <field id="legalStatusDate" ui-search="repeatable" ui-type="date" datatype="date" section="lhs"></field>
 
-        <field id="catalogingDateMade" ui-search="repeatable" section="lhs"/>
-        <field id="catalogingDateEarliestYear" ui-search="range" ui-type="date" section="lhs"/>
-        <field id="catalogingDateLatestYear" ui-search="range" ui-type="date" section="lhs"/>
+        <field id="catalogingDateMade" ui-search="repeatable" section="lhs"></field>
+        <field id="catalogingDateEarliestYear" ui-search="range" ui-type="date" datatype="date" section="lhs"></field>
+        <field id="catalogingDateLatestYear" ui-search="range" ui-type="date" datatype="date" section="lhs"></field>
         <repeat id="catalogingDateCenturies" section="lhs">
             <field id="catalogingDateCentury" ui-search="repeatable" section="lhs">
                 <options>
@@ -108,7 +108,7 @@
                 </options>
             </field>
         </repeat>
-        <field id="catalogingDateNote" section="lhs"/>
+        <field id="catalogingDateNote" section="lhs"></field>
     </section>
     <section id="objectProductionInformation">
         <repeat id="objectProductionPlaceGroupList/objectProductionPlaceGroup">
@@ -124,9 +124,9 @@
     </section>
     <section id="objectHistoryAssociationInformation">
         <repeat id="formerOwnerGroupList/formerOwnerGroup" section="lhs">
-            <field id="formerOwner" ui-search="repeatable" autocomplete="person-person,organization-organization" section="lhs"/>
-            <field id="formerOwnerDate" ui-search="repeatable" ui-type="date" section="lhs"/>
-            <field id="formerOwnerPlace" ui-search="repeatable" section="lhs"/>
+            <field id="formerOwner" ui-search="repeatable" autocomplete="person-person,organization-organization" section="lhs"></field>
+            <field id="formerOwnerDate" ui-search="repeatable" ui-type="date" datatype="date" section="lhs"></field>
+            <field id="formerOwnerPlace" ui-search="repeatable" section="lhs"></field>
         </repeat>
     </section>
 </record>

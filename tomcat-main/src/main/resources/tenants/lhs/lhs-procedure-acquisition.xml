@@ -1,4 +1,4 @@
-<record id="acquisition" is-extension="true">
+<record id="acquisition" is-extension="true" generate-services-schema="true">
     <services-record-path id="lhs">acquisitions_lhs:http://collectionspace.org/services/acquisition/local/lhs,acquisitions_lhs</services-record-path>
     <section id="acquisitionInformation">
         <field id="acquisitionMethod" ui-search="repeatable" seperate_ui_container="true">
@@ -13,7 +13,7 @@
             </options>
         </field>
         <repeat id="acquisitionSources">
-            <field id="acquisitionSource" mini="search,list,relate" ui-search="repeatable">
+            <field id="acquisitionSource" mini="search,list,relate" ui-search="repeatable" autocomplete="">
                 <!-- removing person and org auth references; removing as summary field -->
             </field>
         </repeat>
@@ -32,7 +32,7 @@
             </enum>
         </field>
         <field id="acquisitionAppraisalValue" ui-type="validated" datatype="float" section="lhs"></field>
-        <field id="acquisitionAppraisalDate" ui-type="date" section="lhs"></field>
+        <field id="acquisitionAppraisalDate" ui-type="date" datatype="date" section="lhs"></field>
         <field id="acquisitionAppraiser" autocomplete="person-person,organization-organization" section="lhs"></field>
     </section>
     <section id="objectDonorContributionInformation" section="lhs">
