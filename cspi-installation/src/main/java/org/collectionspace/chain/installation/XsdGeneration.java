@@ -12,23 +12,19 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 import org.apache.commons.io.FilenameUtils;
-
 import org.collectionspace.chain.csp.config.ConfigRoot;
 import org.collectionspace.chain.csp.inner.CoreConfig;
 import org.collectionspace.chain.csp.persistence.services.ServicesStorageGenerator;
 import org.collectionspace.chain.csp.persistence.services.TenantSpec;
 import org.collectionspace.chain.csp.schema.Record;
 import org.collectionspace.chain.csp.schema.Spec;
-
 import org.collectionspace.csp.api.container.CSPManager;
 import org.collectionspace.csp.api.core.CSPDependencyException;
 import org.collectionspace.csp.container.impl.CSPManagerImpl;
 import org.collectionspace.csp.helper.core.ConfigFinder;
 import org.collectionspace.csp.helper.test.TestConfigFinder;
-
 import org.collectionspace.services.client.AbstractServiceClientImpl;
 import org.collectionspace.services.common.api.CommonAPI;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.InputSource;
@@ -77,8 +73,9 @@ public class XsdGeneration {
 	private static final String SERVICE_NAME_LOWERCASE_VAR = "${ServiceName_LowerCase}";	
 	
 	private static final String DOCTYPE_DEFAULT_LIFECYCLE = "cs_default";
-        private static final String DOCTYPE_LOCKING_LIFECYCLE = "cs_locking";
-        private static final String DOCTYPE_LIFECYCLE_VAR = "${Lifecycle}";
+    private static final String DOCTYPE_LOCKING_LIFECYCLE = "cs_locking"; // Used for Movement records
+    private static final String DOCTYPE_REPLICATING_LIFECYCLE = "cs_replicating"; // Used for Shared Authority records
+    private static final String DOCTYPE_LIFECYCLE_VAR = "${Lifecycle}";
 	
 	private static final String BUNDLE_SYM_NAME = "${BundleSymbolicName}";
 	private static final String AUTH_BUNDLE_SYM_NAME = "${AuthBundleSymbolicName}";
@@ -211,7 +208,7 @@ public class XsdGeneration {
 			String schemaVersion, 
 			File bundlesOutputDir, 
 			String serviceBindingsVersion) throws Exception {		
-		CSPManager cspm=getServiceManager(configfile);
+		CSPManager cspm = getServiceManager(configfile);		
 		Spec spec = createSpec(cspm);
 		setSpec(spec);
 
@@ -268,7 +265,7 @@ public class XsdGeneration {
 				throw new Exception(errMsg);
 			}
 		} else if (generationType.equals(CommonAPI.GENERATE_BINDINGS)) { // Create the service bindings.
-			Services tenantbob = new Services(createSpec(cspm), getTenantData(cspm),false);
+			ServiceBindingsGeneration tenantbob = new ServiceBindingsGeneration(createSpec(cspm), getTenantData(cspm),false);
 			tenantBindings = tenantbob.doit(serviceBindingsVersion);
 		} else {
 			throw new Exception("Unknown generation type requested.");
@@ -330,6 +327,7 @@ public class XsdGeneration {
 			File outputDir) throws Exception {
 		boolean isAuthorityItemType = record.isAuthorityItemType();
                 boolean supportsLocking = record.supportsLocking();
+                boolean supportsReplicating = record.supportsReplicating();
                 String serviceName = record.getServicesTenantSg();
 		String tenantName = record.getSpec().getAdminData().getTenantName();
 		String docTypeName = record.getServicesTenantDoctype(false); // 'false' means we're not treating the record as an authority
@@ -363,13 +361,18 @@ public class XsdGeneration {
 				HashMap<String, String> substitutionMap = new HashMap<String, String>();
 				substitutionMap.put(SERVICE_NAME_VAR, serviceName);
 				substitutionMap.put(SERVICE_NAME_LOWERCASE_VAR, serviceName.toLowerCase());
-                                if (supportsLocking) {
-                                    substitutionMap.put(DOCTYPE_LIFECYCLE_VAR, DOCTYPE_LOCKING_LIFECYCLE);
-                                } else {
-                                    substitutionMap.put(DOCTYPE_LIFECYCLE_VAR, DOCTYPE_DEFAULT_LIFECYCLE);
-                                }
-                                substitutionMap.put(DOCTYPE_NAME_VAR, docTypeName);
+				// Set the document workflow lifecycle type
+                if (supportsLocking) {
+                    substitutionMap.put(DOCTYPE_LIFECYCLE_VAR, DOCTYPE_LOCKING_LIFECYCLE);
+                } else if (supportsReplicating) {
+                    substitutionMap.put(DOCTYPE_LIFECYCLE_VAR, DOCTYPE_REPLICATING_LIFECYCLE);
+                } else {
+                    substitutionMap.put(DOCTYPE_LIFECYCLE_VAR, DOCTYPE_DEFAULT_LIFECYCLE);
+                }
+                // Set the resource/document type names
+                substitutionMap.put(DOCTYPE_NAME_VAR, docTypeName);
 				substitutionMap.put(DOCTYPE_NAME_LOWERCASE_VAR, docTypeName.toLowerCase());
+				// Authority items require additional names
 				if (isAuthorityItemType == true) {
 					String authoritySchemaName = FilenameUtils.removeExtension(getAuthoritiesCommonName(record));
 					substitutionMap.put(AUTHORITY_SCHEMA_NAME_VAR, authoritySchemaName.toLowerCase());		
@@ -893,23 +896,19 @@ public class XsdGeneration {
 		return td;
 	}
 	
-	private CSPManager getServiceManager(File configFile) {
+	private CSPManager getServiceManager(File configFile) throws Exception {
 		CSPManager result = null;
 		
 		CSPManager cspm = new CSPManagerImpl();
 		cspm.register(new CoreConfig());
 		cspm.register(new Spec());
 		cspm.register(new ServicesStorageGenerator());
-		try {
-			cspm.go(); // Do more initialization of our CSPManagerImpl instance (i.e., cspm)
-			File configBase = configFile.getParentFile();
-			cspm.setConfigBase(configBase); // Saves a copy of the base config directory
-			cspm.configure(getSource(configFile), new ConfigFinder(null, configBase));
-			this.setConfigBase(configBase);
-			result = cspm;
-		} catch (CSPDependencyException e) {
-			log.error("CSPManagerImpl initialization failed.", e);
-		}
+		cspm.go(); // Do more initialization of our CSPManagerImpl instance (i.e., cspm)
+		File configBase = configFile.getParentFile();
+		cspm.setConfigBase(configBase); // Saves a copy of the base config directory
+		cspm.configure(getSource(configFile), new ConfigFinder(null, configBase), true);
+		this.setConfigBase(configBase);
+		result = cspm;
 		
 		return result;
 	}

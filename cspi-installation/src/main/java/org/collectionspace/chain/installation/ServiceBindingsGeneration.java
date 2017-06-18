@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.collectionspace.chain.csp.persistence.services.TenantSpec;
+import org.collectionspace.chain.csp.persistence.services.TenantSpec.RemoteClient;
 import org.collectionspace.chain.csp.schema.Field;
 import org.collectionspace.chain.csp.schema.FieldParent;
 import org.collectionspace.chain.csp.schema.FieldSet;
@@ -15,7 +16,6 @@ import org.collectionspace.chain.csp.schema.Repeat;
 import org.collectionspace.chain.csp.schema.Spec;
 import org.collectionspace.services.common.api.FileTools;
 import org.collectionspace.services.common.api.Tools;
-
 import org.dom4j.Document;
 import org.dom4j.DocumentFactory;
 import org.dom4j.Element;
@@ -25,8 +25,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.apache.commons.io.FileUtils;
 
-public class Services {
-	private static final Logger log = LoggerFactory.getLogger(Services.class);
+public class ServiceBindingsGeneration {
+	private static final Logger log = LoggerFactory.getLogger(ServiceBindingsGeneration.class);
 	
 	private static final String RECORD_TYPE_VOCABULARY = "vocabulary";
 	private static final String RECORD_TYPE_AUTHORITY = "authority";
@@ -69,18 +69,19 @@ public class Services {
 	/**
 	 * not sure how configurable these need to be - they can be made more flexible
 	 */
+	protected Namespace nsxsi = new Namespace("xsi", "http://www.w3.org/2001/XMLSchema-instance");  
 	protected Namespace nstenant = new Namespace("tenant", "http://collectionspace.org/services/config/tenant"); // http://collectionspace.org/services/config/tenant
 	protected Namespace nsservices = new Namespace("service", "http://collectionspace.org/services/config/service"); 
-	protected Namespace nsxsi = new Namespace("xsi", "http://www.w3.org/2001/XMLSchema-instance");  
 	protected Namespace nstypes = new Namespace("types", "http://collectionspace.org/services/config/types"); 
+	
 	protected String schemaloc = "http://collectionspace.org/services/config/tenant " +
 	"http://collectionspace.org/services/config/tenant.xsd";
 
-	public Services() {
+	public ServiceBindingsGeneration() {
 		// Intentionally left blank?
 	}
 	
-	public Services(Spec spec,TenantSpec td, Boolean isdefault) throws IOException {
+	public ServiceBindingsGeneration(Spec spec,TenantSpec td, Boolean isdefault) throws IOException {
 		this.spec = spec;
 		this.tenantSpec = td;
 		this.defaultonly = isdefault;
@@ -159,6 +160,7 @@ public class Services {
 			ele.addAttribute("id", this.tenantSpec.getTenantId());
 			ele.addAttribute("name", this.tenantSpec.getTenant());
 			ele.addAttribute("displayName", this.tenantSpec.getTenantDisplay());
+			ele.addAttribute("createDisabled", Boolean.toString(this.tenantSpec.getCreateDisabled()));
 		}
 		ele.addAttribute("version", this.tenantSpec.getTenantVersion());
 
@@ -170,6 +172,9 @@ public class Services {
 		    rele.addAttribute("repositoryName", this.tenantSpec.getRepositoryName());
                 }
 		rele.addAttribute("repositoryClient", this.tenantSpec.getRepositoryClient());
+		
+		// Set remote clients
+		makeRemoteClients(ele);
 
 		// add in <tenant:properties> if required
 		makeProperties(ele);
@@ -184,7 +189,7 @@ public class Services {
 
 			if (shouldGenerateServiceBinding(r) == true) {
 				Element serviceBindingsElement = null;
-				if (r.isType(RECORD_TYPE_RECORD) == true) {
+				if (r.isType(RECORD_TYPE_RECORD) == true) { // Records can be of several types -i.e., can be both a "record" type and a "vocabulary" type
 					String rtype = getServiceBindingType(r);
 					// e.g., <tenant:serviceBindings name="CollectionObjects" type="object" version="0.1">
 					serviceBindingsElement = ele.addElement(new QName("serviceBindings", nstenant));
@@ -192,6 +197,14 @@ public class Services {
 					serviceBindingsElement.addAttribute("name", r.getServicesTenantPl());
 					serviceBindingsElement.addAttribute("type", rtype);
 					serviceBindingsElement.addAttribute("version", serviceBindingVersion);
+					if (r.isType(RECORD_TYPE_VOCABULARY) == true) {
+						serviceBindingsElement.addAttribute(Record.REQUIRES_UNIQUE_SHORTID, Boolean.TRUE.toString()); // Vocabularies need unique short IDs
+						serviceBindingsElement.addAttribute(Record.SUPPORTS_REPLICATING, Boolean.toString(r.supportsReplicating()));  //  they also need to support replication
+						String remoteClientConfigName = r.getRemoteClientConfigName();
+						if (remoteClientConfigName != null && remoteClientConfigName.isEmpty() == false) {
+							serviceBindingsElement.addAttribute(Record.REMOTECLIENT_CONFIG_NAME, remoteClientConfigName);
+						}
+					}
 					addServiceBinding(r, serviceBindingsElement, nsservices, false, serviceBindingVersion);
 				} else if (r.isType(RECORD_TYPE_AUTHORITY)) {
 					// e.g., <tenant:serviceBindings id="Persons" name="Persons" type="authority" version="0.1">
@@ -261,46 +274,80 @@ public class Services {
 		}
 	}
 
+	private void makeRemoteClients(Element tenantBindingElement) {
+		RemoteClient[] remoteClientList = tenantSpec.getRemoteClients();
+		
+		if (remoteClientList != null && remoteClientList.length > 0) {
+			Element remoteClientsElement = tenantBindingElement.addElement(new QName("remoteClientConfigurations", nstenant));
+			for (TenantSpec.RemoteClient remoteClient : remoteClientList) {
+				Element remoteClientElement = remoteClientsElement.addElement(new QName("remoteClientConfig", nstenant));			
+				Element ele;
+				
+				ele = remoteClientElement.addElement(new QName("name", nstenant));
+				ele.addText(remoteClient.getName());
+				
+				ele = remoteClientElement.addElement(new QName("url", nstenant));
+				ele.addText(remoteClient.getUrl());
+				
+				ele = remoteClientElement.addElement(new QName("user", nstenant));
+				ele.addText(remoteClient.getUser());
+				
+				ele = remoteClientElement.addElement(new QName("password", nstenant));
+				ele.addText(remoteClient.getPassword());
+				
+				// Optional
+				if (remoteClient.getTenantId() != null) {
+					ele = remoteClientElement.addElement(new QName("tenantId", nstenant));
+					ele.addText(remoteClient.getTenantId());
+				}
+				
+				// Optional
+				if (remoteClient.getTenantName() != null) {
+					ele = remoteClientElement.addElement(new QName("tenantName", nstenant));
+					ele.addText(remoteClient.getTenantName());
+				}
+				
+				ele = remoteClientElement.addElement(new QName("ssl", nstenant));
+				ele.addText(remoteClient.getSSL());
+				
+				ele = remoteClientElement.addElement(new QName("auth", nstenant));
+				ele.addText(remoteClient.getAuth());
+			}
+		}
+	}
+	
 	/**
 	 * Add in date formats and languages if required
 	 * @param ele
 	 */
-	private void makeProperties(Element ele){
+	private void makeProperties(Element tenantBindingElement) {
 		Boolean showLang = true;
 		Boolean showDate = true;
 		if (!this.defaultonly) {
-			if(this.tenantSpec.isDefaultLanguage()){
+			if (tenantSpec.isDefaultLanguage()) {
 				showLang = false;
 			}
-			if(this.tenantSpec.isDefaultDate()){
+			if (tenantSpec.isDefaultDate()) {
 				showDate = false;
 			}
 		}
-		
-		if (showDate || showLang) {
-			Element pele = ele.addElement(new QName("properties", nstenant));
-			if (showDate) {
-				for (String dateformat : this.tenantSpec.getDateFormats()) {
 
-					Element tele = pele.addElement(new QName("item",
-							this.nstypes));
-					Element tele2 = tele.addElement(new QName("key",
-							this.nstypes));
-					Element tele3 = tele.addElement(new QName("value",
-							this.nstypes));
+		if (showDate || showLang) {
+			Element pele = tenantBindingElement.addElement(new QName("properties", nstenant));
+			if (showDate) {
+				for (String dateformat : tenantSpec.getDateFormats()) {
+					Element tele = pele.addElement(new QName("item", this.nstypes));
+					Element tele2 = tele.addElement(new QName("key", this.nstypes));
+					Element tele3 = tele.addElement(new QName("value", this.nstypes));
 					tele2.addText("datePattern");
 					tele3.addText(dateformat);
 				}
 			}
 			if (showLang) {
-				for (String lang : this.tenantSpec.getLanguages()) {
-
-					Element tele = pele.addElement(new QName("item",
-							this.nstypes));
-					Element tele2 = tele.addElement(new QName("key",
-							this.nstypes));
-					Element tele3 = tele.addElement(new QName("value",
-							this.nstypes));
+				for (String lang : tenantSpec.getLanguages()) {
+					Element tele = pele.addElement(new QName("item", this.nstypes));
+					Element tele2 = tele.addElement(new QName("key", this.nstypes));
+					Element tele3 = tele.addElement(new QName("value", this.nstypes));
 					tele2.addText("localeLanguage");
 					tele3.addText(lang);
 				}
@@ -657,13 +704,15 @@ public class Services {
 	 * we need to create the two corresponding service bindings from the one Application record.
 	 */
 	private void addAuthorities(Record r, Element el, String serviceBindingVersion) {		
-		// Add the bindings for the Authority/Vocabulary item
+		// Add the bindings for the Authority/Vocabulary item.
 		Element bindingsForAuthorityItemx = el.addElement(new QName("serviceBindings", nstenant));
 		bindingsForAuthorityItemx.addAttribute("name", r.getServicesTenantPl());
 		bindingsForAuthorityItemx.addAttribute("id", r.getServicesTenantPl());
 		bindingsForAuthorityItemx.addAttribute("type", RECORD_TYPE_AUTHORITY);
-		
 		bindingsForAuthorityItemx.addAttribute("version", serviceBindingVersion);
+		bindingsForAuthorityItemx.addAttribute(Record.SUPPORTS_REPLICATING, Boolean.toString(r.supportsReplicating()));
+		bindingsForAuthorityItemx.addAttribute(Record.REQUIRES_UNIQUE_SHORTID, Boolean.TRUE.toString());
+
 		addServiceBinding(r, bindingsForAuthorityItemx, nsservices, false, serviceBindingVersion);
 		if (log.isDebugEnabled() == true) {
 			this.writeToFile(r, bindingsForAuthorityItemx, false);
@@ -674,8 +723,14 @@ public class Services {
 		bindingsForAuthority.addAttribute("name", r.getServicesTenantAuthPl());
 		bindingsForAuthority.addAttribute("id", r.getServicesTenantAuthPl());
 		bindingsForAuthority.addAttribute("type", RECORD_TYPE_UTILITY);
-		
 		bindingsForAuthority.addAttribute("version", serviceBindingVersion);
+		bindingsForAuthority.addAttribute(Record.SUPPORTS_REPLICATING, Boolean.toString(r.supportsReplicating()));
+		bindingsForAuthority.addAttribute(Record.REQUIRES_UNIQUE_SHORTID, Boolean.TRUE.toString());
+		String remoteClientConfigName = r.getRemoteClientConfigName();
+		if (remoteClientConfigName != null && remoteClientConfigName.isEmpty() == false) {
+			bindingsForAuthority.addAttribute(Record.REMOTECLIENT_CONFIG_NAME, remoteClientConfigName);
+		}
+
 		addServiceBinding(r, bindingsForAuthority, nsservices, true, serviceBindingVersion);
 		if (log.isDebugEnabled() == true) {
 			this.writeToFile(r, bindingsForAuthority, true);
@@ -722,6 +777,11 @@ public class Services {
 			String validatorHandlerName = r.getServicesValidatorHandler(isAuthority);
 			Element validatorHandlerElement = el.addElement(new QName("validatorHandler", nameSpace));
 			validatorHandlerElement.addText(validatorHandlerName);
+			
+			//<service:clientHandler>
+			String clientHandlerName = r.getServicesClientHandler(isAuthority);
+			Element clientHandlerElement = el.addElement(new QName("clientHandler", nameSpace));
+			clientHandlerElement.addText(clientHandlerName);		
 			
 			//<service:initHandler> which fields need to be modified in the nuxeo db
 			doInitHandler(r, el, this.nsservices, isAuthority);

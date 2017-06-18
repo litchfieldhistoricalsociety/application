@@ -39,6 +39,9 @@ public class Record implements FieldParent {
 	private static final String TYPE_AUTHORITY_LOWERCASE = TYPE_AUTHORITY.toLowerCase();
 
 	public static final String SUPPORTS_LOCKING = "supportslocking";
+	public static final String SUPPORTS_REPLICATING = "supportsReplicating";
+	public static final String REMOTECLIENT_CONFIG_NAME = "remoteClientConfigName";
+	public static final String REQUIRES_UNIQUE_SHORTID = "requiresUniqueShortId";
 	public static final String SUPPORTS_VERSIONING = "supportsversioning";
 	public static final String RANGE_START_SUFFIX = "Start";
 	public static final String RANGE_END_SUFFIX = "End";
@@ -224,6 +227,8 @@ public class Record implements FieldParent {
 		utils.initBoolean(section, "hasdeletemethod", false);
 		utils.initBoolean(section, "hassoftdelete", false);
 		utils.initBoolean(section, SUPPORTS_LOCKING, false);
+		utils.initBoolean(section, SUPPORTS_REPLICATING, false);
+		utils.initStrings(section, REMOTECLIENT_CONFIG_NAME, "");
 		utils.initBoolean(section, SUPPORTS_VERSIONING, false);
 
 		//(17:06) The services singular tag should probably be "ServicesDocumentType"
@@ -706,6 +711,14 @@ public class Record implements FieldParent {
 	public boolean supportsLocking() {
 		return utils.getBoolean(SUPPORTS_LOCKING);
 	}
+	
+	public boolean supportsReplicating() {
+		return utils.getBoolean(SUPPORTS_REPLICATING);
+	}
+
+	public String getRemoteClientConfigName() {
+		return utils.getString(REMOTECLIENT_CONFIG_NAME);
+	}
 
 	public boolean supportsVersioning() {
             return utils.getBoolean(SUPPORTS_VERSIONING);
@@ -854,6 +867,7 @@ public class Record implements FieldParent {
 
 	/*
 	 * Gets the Service's document model validation handler by using standard naming conventions.
+	 * For example, org.collectionspace.services.collectionobject.nuxeo.CollectionObjectValidatorHandler
 	 */	
 	public String getServicesValidatorHandler(Boolean isAuthority) {
 		String result = utils.getString("services-validator");
@@ -869,6 +883,25 @@ public class Record implements FieldParent {
 
 		return result;
 	}
+	
+	//
+	// For example, org.collectionspace.services.client.CollectionObjectClient
+	//
+	public String getServicesClientHandler(Boolean isAuthority) {
+		String result = utils.getString("services-client");
+
+		if (result == null) {
+			result = "org.collectionspace.services.client." + utils.getString("services-tenant-singular")
+					+ "Client";
+		}
+		
+		if (isAuthority == true) {
+			result = getAuthorityForm(result);
+		}
+
+		return result;
+	}
+	
 
 	public String getServicesRepositoryDomain() {
 		return utils.getString("services-repo-domain");
@@ -899,7 +932,10 @@ public class Record implements FieldParent {
 	}
 
 	public String getServicesRecordPath(String name) {
-		return services_record_paths.get(name);
+		if (services_record_paths.get(name) != null){
+			return services_record_paths.get(name).trim();
+		}
+		return null;
 	}
 
 	public String getServicesSchemaName(String sectionName) {
