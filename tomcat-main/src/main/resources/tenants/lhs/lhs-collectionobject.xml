@@ -51,7 +51,7 @@
     </section>
     <section id="descriptionInformation">
         <repeat id="materialGroupList/materialGroup">
-            <field id="material" ui-search="repeatable" autocomplete="concept-material_ca">
+            <field id="material" ui-search="repeatable" autocomplete="concept-material_ca,concept-material_ca_shared">
                 <!-- adding concept-material_ca auth -->
             </field>
         </repeat>
@@ -117,14 +117,14 @@
             </field>
         </repeat>
         <repeat id="objectProductionPersonGroupList/objectProductionPersonGroup">
-            <field id="objectProductionPerson" ui-search="repeatable" autocomplete="person-person,organization-organization">
+            <field id="objectProductionPerson" ui-search="repeatable" autocomplete="person-person,person-person_shared,organization-organization">
                 <!-- adding org auth ref -->
             </field>
         </repeat>
     </section>
     <section id="objectHistoryAssociationInformation">
         <repeat id="formerOwnerGroupList/formerOwnerGroup" section="lhs">
-            <field id="formerOwner" ui-search="repeatable" autocomplete="person-person,organization-organization" section="lhs"></field>
+            <field id="formerOwner" ui-search="repeatable" autocomplete="person-person,person-person_shared,organization-organization" section="lhs"></field>
             <field id="formerOwnerDate" ui-search="repeatable" ui-type="date" datatype="date" section="lhs"></field>
             <field id="formerOwnerPlace" ui-search="repeatable" section="lhs"></field>
         </repeat>

@@ -33,10 +33,10 @@
         </field>
         <field id="acquisitionAppraisalValue" ui-type="validated" datatype="float" section="lhs"></field>
         <field id="acquisitionAppraisalDate" ui-type="date" datatype="date" section="lhs"></field>
-        <field id="acquisitionAppraiser" autocomplete="person-person,organization-organization" section="lhs"></field>
+        <field id="acquisitionAppraiser" autocomplete="person-person,person-person_shared,organization-organization" section="lhs"></field>
     </section>
     <section id="objectDonorContributionInformation" section="lhs">
-        <field id="donor" autocomplete="person-person,organization-organization" section="lhs"></field>
+        <field id="donor" autocomplete="person-person,person-person_shared,organization-organization" section="lhs"></field>
         <field id="donorsPersonalExperience" section="lhs"></field>
         <field id="donorsPersonalResponse" section="lhs"></field>
         <repeat id="donorsReferences" section="lhs">

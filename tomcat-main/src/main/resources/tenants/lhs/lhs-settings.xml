@@ -58,6 +58,18 @@
                 </languages>
                 <indexHandler>org.collectionspace.services.common.init.AddIndices</indexHandler>
             </repository>
+            <remoteclients>
+                <remoteclient>
+                    <name>default</name>
+                    <url>http://localhost:8180/cspace-services/</url>
+                    <user>admin@testsci.collectionspace.org</user>
+                    <password>Administrator</password>
+                    <ssl>false</ssl>
+                    <auth>true</auth>
+                    <tenantId>2</tenantId>
+                    <tenantName>testsci.collectionspace.org</tenantName>
+                </remoteclient>
+            </remoteclients>
             <ims-url>/collectionspace/tenant/lhs/</ims-url> <!-- XXX should be in separate IMS section -->
         </service>
     </persistence>
@@ -67,7 +79,7 @@
             <login-failed-dest>/collectionspace/ui/lhs/html/index.html</login-failed-dest>
             <front-page>/collectionspace/ui/lhs/html/index.html</front-page>
             <find-page>myCollectionSpace</find-page>
-            <tmp-schema-path />
+            <tmp-schema-path></tmp-schema-path>
             <mappings>
                 <map>
                     <recordtype>record</recordtype>
