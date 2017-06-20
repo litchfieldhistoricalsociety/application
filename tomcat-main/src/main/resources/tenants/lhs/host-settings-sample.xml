@@ -10,6 +10,6 @@
         <password>Administrator</password>
     </admin>
     <email>
-        <baseurl>http://localhost:8180</baseurl>
+        <baseurl>http://localhost:@JEE_PORT@</baseurl>
     </email>
 </settings>

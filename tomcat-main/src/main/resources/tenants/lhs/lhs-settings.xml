@@ -44,6 +44,7 @@
                 <name>litchfieldhistoricalsociety.org</name>
                 <version>0.1</version>
                 <display-name>Collectionspace LHS Tenant</display-name>
+                <create-disabled>false</create-disabled>
             </tenant>
             <repository>
                 <domain>lhs-domain</domain>
